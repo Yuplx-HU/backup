@@ -1,0 +1,20 @@
+{
+    "include_files": [],
+    "include_folders": [
+        "."
+    ],
+    "exclude_files": [
+        ".env"
+    ],
+    
+    "exclude_folders": [
+        ".git",
+        "backup",
+        "__pycache__"
+    ],
+
+    "backup_name": "%Y-%m-%d-%s",
+
+    "local_backup_folder": "backup",
+    "remote_backup_folder": "projs/backup"
+}

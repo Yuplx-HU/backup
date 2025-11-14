@@ -1,0 +1,12 @@
+{
+    "include_files": [],
+    "include_folders": [],
+    "exclude_files": [],
+    
+    "exclude_folders": [],
+
+    "backup_name": "",
+
+    "local_backup_folder": "",
+    "remote_backup_folder": ""
+}

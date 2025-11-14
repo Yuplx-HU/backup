@@ -1,0 +1,3 @@
+machine webdav-url
+login example@mail.com
+password thirdparty-application-passwprd
