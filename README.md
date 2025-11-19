@@ -2,8 +2,6 @@
 
 A simple and easy-to-use file backup tool that supports local and remote backups.
 
-Support Chinese version in `README_zh.md`.
-
 ## Features
 
 - Configuration file-based backup settings
@@ -37,7 +35,7 @@ export CADAVER_PATH="/path/to/cadaver/usr/bin"
 export PATH="$CADAVER_PATH:$PATH"
 ```
 
-Configure `~/.netrc` in the home directory (using Jianguoyun as an example, password needs to be obtained after authorizing third-party applications in Jianguoyun):
+Configure `~/.netrc` environment:
 ```txt
 machine webdav-url
 login example@mail.com
@@ -57,11 +55,8 @@ Create a `.backup` file in the project directory that needs to be backed up:
 
 ```json
 {
-    "include_files": [],
-    "include_folders": [],
-    "exclude_files": [],
-    
-    "exclude_folders": [],
+    "include_patterns": [],
+    "exclude_patterns": [],
 
     "backup_name": "",
 
@@ -73,43 +68,37 @@ Create a `.backup` file in the project directory that needs to be backed up:
 Example:
 ```json
 {
-    "include_files": [],
-    "include_folders": [
-        "."
-    ],
-    "exclude_files": [
-        ".env"
-    ],
-    
-    "exclude_folders": [
-        ".git",
-        "backup",
-        "__pycache__"
+    "exclude_patterns": [
+        ".env",
+        ".git/*",
+        "backup/*",
+        "__pycache__/*"
     ],
 
-    "backup_name": "%Y-%m-%d-%s",
-
-    "local_backup_folder": "backup",
-    "remote_backup_folder": "projs/backup"
+    "local_backup_folder": "backup/",
+    "remote_backup_folder": "projs/backup/"
 }
 ```
+
+No `include_patterns` means to include all the files and folders in the work space.
+
+No `backup_name` means to use `%Y-%m-%d-%H%M%S`.
+
 
 ### 2. Run Backup
 
 ```bash
 # Without remote backup
-python backup.py -c /path/to/project/.backup
+python main.py -c /path/to/.backup
 
 # With remote backup
-python backup.py -c /path/to/project/.backup -r webdav-url
+python main.py -c /path/to/.backup -r webdav-url
 ```
 
 ## Configuration Explanation
 
-- **include_files**: Specific files to include (supports wildcards)
-- **include_folders**: Folders to include
-- **exclude_files**: Files to exclude
-- **exclude_folders**: Folders to exclude
+- **include_patterns**: Folders and files to include
+- **exclude_patterns**: Folders and files to exclude
 - **backup_name**: Backup file naming format (using strftime format)
 - **local_backup_folder**: Local backup path (relative to project root)
 - **remote_backup_folder**: Remote backup path (WebDAV server path)
