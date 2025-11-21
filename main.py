@@ -26,7 +26,7 @@ class BackupTool:
             print(f"Error loading config: {e}")
             sys.exit(1)
         
-        self.file_selector = FileSelector()
+        self.file_selector = FileSelector(os.path.dirname(config_path))
         self.file_selector.add_include_patterns(self.config.get('include_patterns', []))
         self.file_selector.add_exclude_patterns(self.config.get('exclude_patterns', []))
     
